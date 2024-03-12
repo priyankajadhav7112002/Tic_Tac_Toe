@@ -21,8 +21,16 @@ class MainMenuScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Responsive(
+          child: Container(
+          margin: const EdgeInsets.symmetric(
+            horizontal: 40,
+          ),
+          
       child: Column(
+        
         mainAxisAlignment: MainAxisAlignment.center,
+        
+        
         children: [
           CustomButton(
             onTap: () => createRoom(context),
@@ -37,6 +45,6 @@ class MainMenuScreen extends StatelessWidget {
           )
         ],
       ),
-    ));
+    )));
   }
 }
