@@ -8,18 +8,36 @@ import 'package:provider/provider.dart';
 import 'package:socket_io_client/socket_io_client.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
+void showToast(String message) {
+  Fluttertoast.showToast(
+    msg: message,
+    toastLength: Toast.LENGTH_SHORT, // Duration for which the toast should be visible
+    gravity: ToastGravity.BOTTOM, // Position of the toast message on the screen
+    backgroundColor: Colors.black.withOpacity(0.7), // Background color of the toast message
+    textColor: Colors.white, // Text color of the toast message
+    fontSize: 16.0, // Font size of the toast message
+  );
+}
+
+
 class SocketMethods {
   // final _socketClient = SocketClient.instance.socket!;
 
-  late IO.Socket socket = IO.io('http://192.168.122.239:3000',
-      IO.OptionBuilder().setTransports(['websocket']).build());
+  // late IO.Socket socket = IO.io('http://192.168.122.239:3000',
+  late IO.Socket socket = IO.io('wws://thankful-relic-party.glitch.me',
+      IO.OptionBuilder().setTransports(['websocket']).disableAutoConnect().build());
 
   Socket get socketClient => socket;
 
+
   connectSocket() {
-    socket.onConnect((data) => print("Connection Established ..."));
-    socket.onConnectError(((data) => print("Connect error : $data")));
-    socket.onDisconnect((data) => print("Connection got disconnected"));
+    socket.connect();
+    socket.onConnect((data) => showToast("Connection Established ..."));
+    socket.onConnectError(((data) => showToast("Connect error : $data")));
+    socket.onDisconnect((data) => showToast("Connection got disconnected"));
   }
 
   // EMITS
