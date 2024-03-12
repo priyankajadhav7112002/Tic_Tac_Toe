@@ -39,7 +39,7 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
       body: Responsive(
         child: Container(
           margin: const EdgeInsets.symmetric(
-            horizontal: 20,
+            horizontal: 30,
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -62,10 +62,11 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
               ),
               SizedBox(height: size.height * 0.045),
               CustomButton(
-                  onTap: () => _socketMethods.createRoom(
-                        _nameController.text,
-                      ),
-                  text: 'Create'),
+                onTap: () {
+                  _socketMethods.createRoom(_nameController.text);
+                },
+                text: 'Create',
+              ),
             ],
           ),
         ),
