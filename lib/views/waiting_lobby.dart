@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/provider/room_data_provider.dart';
 import 'package:tic_tac_toe/widgets/custom_textfield.dart';
 import 'package:provider/provider.dart';
+import 'package:clipboard/clipboard.dart';
 
 class WaitingLobby extends StatefulWidget {
   const WaitingLobby({Key? key}) : super(key: key);
@@ -39,6 +40,19 @@ class _WaitingLobbyState extends State<WaitingLobby> {
           controller: roomIdController,
           hintText: '',
           isReadOnly: true,
+        ),
+        ElevatedButton(
+          onPressed: () {
+            final String roomId =
+                Provider.of<RoomDataProvider>(context, listen: false).roomData['_id'];
+            FlutterClipboard.copy(roomId);
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('Room ID copied to clipboard'),
+              ),
+            );
+          },
+          child: Text('Copy'),
         ),
       ],
     );

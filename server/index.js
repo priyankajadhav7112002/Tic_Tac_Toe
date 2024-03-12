@@ -13,7 +13,7 @@ var io = require("socket.io")(server);
 app.use(express.json());
 
 const DB =
-  "mongodb+srv://rivaan:test123@cluster0.rmhtu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+'mongodb://priyanka:Priyanka_mongodb@ac-89wfcbj-shard-00-00.uvwokc6.mongodb.net:27017,ac-89wfcbj-shard-00-01.uvwokc6.mongodb.net:27017,ac-89wfcbj-shard-00-02.uvwokc6.mongodb.net:27017/?ssl=true&replicaSet=atlas-110ikc-shard-0&authSource=admin&retryWrites=true&w=majority';
 
 io.on("connection", (socket) => {
   console.log("connected : ",socket.id);
